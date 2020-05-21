@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # get newest version of configs
-cd $(dirmame $BASH_SOURCE)
+cd $(dirname $BASH_SOURCE)
 git pull origin master
 
 # check if everything went fine
@@ -11,17 +11,18 @@ if [[ $getExitCode != 0 ]]; then
 fi
 
 function clean() {
-    get clean -nx
+    git clean -nx
     read -p "Clean the above files (y/n)" -n 1
+    echo
     echo "**** Processing ****"
-    if [[ $REPLY =~ ^[Yy]$]]; then
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
 	git clean -fx
     fi
 }
 
 function loadFilesInRoot() {
     for i in $(ls -a); do 
-        if [ $i != '.' -a $i != '..' -a $i != '.git' -a $i != '.DS_Store' -a $i != 'bootstrap.sh' -a $i != 'README.md' -a $i != '.gitignore' -a $i != '.gitmodules' ]; then 
+        if [ $i != '.' -a $i != '..' -a $i != '.git' -a $i != '.DS_Store' -a $i != 'reload.sh' -a $i != 'README.md' -a $i != '.gitignore' -a $i != '.gitmodules' ]; then 
             echo "$i"
             cp -r "$i" "$HOME/"
 	fi
@@ -30,12 +31,12 @@ function loadFilesInRoot() {
 
 clean
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt
+	loadFilesInRoot
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt
+	    loadFilesInRoot
 	fi
 fi
 unset clean
