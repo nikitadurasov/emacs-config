@@ -12,6 +12,9 @@
 ;; define auto-complete settings
 (require 'auto-complete-settings)
 
+;; define theme styling
+(require 'color-scheme-settings)
+
 (require 'ido)
 (ido-mode t)
 
