@@ -5,7 +5,6 @@
 
 (require 'auto-complete-config) 
 (ac-config-default)
-;(global-auto-complete-mode t)
 
 ;; dirty fix for having AC everywhere
 (define-globalized-minor-mode real-global-auto-complete-mode

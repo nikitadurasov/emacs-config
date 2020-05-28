@@ -15,22 +15,14 @@
 ;; define theme styling
 (require 'color-scheme-settings)
 
+;; turn on border for max line length
+(require 'fci-settings)
+
 (require 'ido)
 (ido-mode t)
 
-;; dirty fix for having fci everywhere
-(define-globalized-minor-mode global-fci-mode
-  fci-mode (lambda ()
-	     (fci-mode 1)
-	     ))
-(global-fci-mode t)
-
-;; dirty fix for having fci everywhere
-(define-globalized-minor-mode global-fci-mode
-  fci-mode (lambda ()
-	     (fci-mode 1)
-	     ))
-(global-fci-mode t)
+;; enable linter checks
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (nyan-mode 1)
 

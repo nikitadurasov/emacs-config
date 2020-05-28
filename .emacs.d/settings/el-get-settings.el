@@ -24,6 +24,7 @@
                color-theme-solarized
                ein
                magit
+	       flycheck
                ;markdown-mode
                ;matlab-mode
                ;nxhtml
