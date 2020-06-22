@@ -12,6 +12,19 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
+;; fixing https://github.com/dimitri/el-get/issues/2251 issue
+(setq el-get-sources
+'(
+ (:name magit
+        :info nil
+        :build (("touch" "lisp/magit-autoloads.el"))
+        :build/berkeley-unix nil)
+ (:name transient
+        :info nil
+        :build (("touch" "lisp/magit-autoloads.el"))
+        :build/berkeley-unix nil)
+))
+
 ; packages to install
 (setq 
  my-packages '(;auctex
